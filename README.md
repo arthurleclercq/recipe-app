@@ -1,38 +1,27 @@
-# sv
+## Application de liste de recettes de cuisine
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Le client et serveur sont en Sveltekit, la base de données est en PostgreSQL.
+Pour le développement la base de données est hébergée grâce à Docker en localhost sur le port 5433, avec les données stockées dans un dossier 'postgres-data' à la racine du projet.
 
-## Creating a project
+## Lancer la base de données
 
-If you're seeing this, you've probably already done this step. Congrats!
+Installer Docker si besoin
+
+Ouvrir un terminal et se placer à la racine du projet
+
+Lancer la commande suivante:
 
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+docker-compose up
 ```
+## Lancer l'application
 
-## Developing
+Ouvrir un terminal, se placer à la  racine du projet
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Lancer la commande suivante:
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
 
-## Building
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
