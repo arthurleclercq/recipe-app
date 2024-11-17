@@ -21,6 +21,7 @@ Ouvrir un terminal, se placer à la  racine du projet
 Lancer la commande suivante:
 
 ```bash
+npm install
 npm run dev -- --open
 ```
 
