@@ -1,13 +1,31 @@
 <script lang="ts">
     import type { PageData } from './$types';
-    //import { sessionStore } from '$lib/stores/sessionStore';
+    import { userStore} from '$lib/stores/userStore';
+    import { get } from 'svelte/store';
+	import { onMount } from 'svelte';
+
+    let user = get(userStore);
 
     export let data: PageData;
     const { latestRecipes, popularRecipes, totalRecipes, featuredRecipe } = data;
 
     //$: currentSession = $sessionStore;
 
-        
+    onMount(async () => {
+        // Appeler l'API pour vérifier la session
+        const response = await fetch('/api/auth/check-session');
+        if (response.ok) {
+            const data = await response.json();
+            //console.log("retour api",data.user)
+            if (data.user) {
+                user=data.user;
+            }else{
+                user=null;
+            }
+        }else{
+            console.log("problème API : vérification de session")
+        }
+    });
 </script>
 
 <div class="container mx-auto px-4 py-8">
@@ -72,7 +90,7 @@
         </a>
 
         <!-- Bouton Ajouter une nouvelle recette conditionnel -->
-        {#if true} <!-- Vérifie si l'utilisateur est connecté -->
+        {#if user} <!-- Vérifie si l'utilisateur est connecté -->
             <a href="/recettes/ajouter" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                 Ajouter une nouvelle recette
             </a>
